@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: (settings) {
         final Map<String, WidgetBuilder> routes = {
-          '/': (context) =>  HomePage(),
+          '/': (context) => HomePage(),
           '/skills': (context) => SkillsPage(),
           '/experience': (context) => ExperiencePage(),
           '/projects': (context) => ProjectsPage(),

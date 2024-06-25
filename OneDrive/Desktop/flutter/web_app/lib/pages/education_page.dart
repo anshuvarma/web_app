@@ -5,7 +5,6 @@ import 'package:web_app/widgets/appBar_widget.dart';
 import 'package:web_app/widgets/column_card_widget.dart';
 import 'package:web_app/widgets/row_card_widget.dart';
 
-
 class EducationPage extends StatelessWidget {
   const EducationPage({super.key});
 

@@ -31,7 +31,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Anshu Varma"),
+            const Text(
+              "Anshu Varma",
+              style: TextStyle(color: Colors.white),
+            ),
             Row(
               children: [
                 for (int i = 0; i < appBarText.length; i++)

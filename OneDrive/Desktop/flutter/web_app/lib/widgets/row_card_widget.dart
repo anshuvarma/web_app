@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 
 class RowCardWidget extends StatelessWidget {
-  final List<String> cardTitles;
+  final List<String>? cardTitles; // Made optional
   final List<List<Widget>> cardDesc;
+  final double? mainAxisExtent; // Max height of each card
+  final double maxCrossAxisExtent; // Max width of each card
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
+  final double? childAspectRatio; // Aspect ratio of each card
+  final Axis scrollDirection; // Scroll direction of the grid
 
   const RowCardWidget({
-    required this.cardTitles,
+    this.cardTitles, // Made optional
     required this.cardDesc,
+    this.mainAxisExtent,
+    required this.maxCrossAxisExtent,
+    this.mainAxisSpacing = 16.0,
+    this.crossAxisSpacing = 16.0,
+    this.childAspectRatio,
+    this.scrollDirection = Axis.vertical,
     super.key,
   });
 
@@ -15,16 +27,17 @@ class RowCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
       child: SizedBox(
-        height: 400, // Adjust the height as needed
+        height: mainAxisExtent ?? 400, // Use dynamic height or default to 400
         child: GridView.builder(
-          scrollDirection: Axis.vertical,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 400, // Max width of each card
-            mainAxisSpacing: 16.0,
-            crossAxisSpacing: 16.0,
-            childAspectRatio: 1.0,
+          scrollDirection: scrollDirection,
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            mainAxisExtent: mainAxisExtent,
+            maxCrossAxisExtent: maxCrossAxisExtent,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
+            childAspectRatio: childAspectRatio ?? 1.0,
           ),
-          itemCount: cardTitles.length,
+          itemCount: cardDesc.length,
           itemBuilder: (context, index) {
             return Card(
               shadowColor: Colors.cyan.shade50,
@@ -41,14 +54,13 @@ class RowCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      cardTitles[index],
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 18.0),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
+                    if (cardTitles != null && cardTitles!.isNotEmpty)
+                      Text(
+                        cardTitles![index],
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 18.0),
+                      ),
+                    const SizedBox(height: 10.0),
                     Wrap(
                       spacing: 10.0, // Adjust spacing between items
                       runSpacing: 10.0, // Adjust spacing between lines

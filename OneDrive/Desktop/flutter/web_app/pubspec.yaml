@@ -39,6 +39,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_web_browser: ^0.16.0
+  url_launcher: ^6.1.7
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -81,6 +84,12 @@ flutter:
     - assets/images/tableau.png
     - assets/images/msexcel.png
     - assets/images/etl.png
+    - assets/images/counter.png
+    - assets/images/pizza.png
+    - assets/images/id.png
+    - assets/images/finger.png
+    - assets/images/coding1.png
+    - assets/images/coding2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
