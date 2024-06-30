@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RowCardWidget extends StatelessWidget {
-  final List<String>? cardTitles; // Made optional
+  final List<String>
+      cardTitles; // Make cardTitles optional with a default value
   final List<List<Widget>> cardDesc;
+  // final String githubUrl;
   final double? mainAxisExtent; // Max height of each card
   final double maxCrossAxisExtent; // Max width of each card
   final double mainAxisSpacing;
@@ -11,9 +13,10 @@ class RowCardWidget extends StatelessWidget {
   final Axis scrollDirection; // Scroll direction of the grid
 
   const RowCardWidget({
-    this.cardTitles, // Made optional
+    this.cardTitles = const [], // Provide a default empty list
     required this.cardDesc,
     this.mainAxisExtent,
+    // this.githubUrl = 'Could not launch',
     required this.maxCrossAxisExtent,
     this.mainAxisSpacing = 16.0,
     this.crossAxisSpacing = 16.0,
@@ -24,6 +27,10 @@ class RowCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titles = cardTitles.isNotEmpty
+        ? cardTitles
+        : List.filled(
+            cardDesc.length, ""); // Use empty strings if cardTitles is empty
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
       child: SizedBox(
@@ -37,7 +44,7 @@ class RowCardWidget extends StatelessWidget {
             crossAxisSpacing: crossAxisSpacing,
             childAspectRatio: childAspectRatio ?? 1.0,
           ),
-          itemCount: cardDesc.length,
+          itemCount: titles.length,
           itemBuilder: (context, index) {
             return Card(
               shadowColor: Colors.cyan.shade50,
@@ -54,9 +61,9 @@ class RowCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (cardTitles != null && cardTitles!.isNotEmpty)
+                    if (titles[index].isNotEmpty)
                       Text(
-                        cardTitles![index],
+                        titles[index],
                         style: const TextStyle(
                             color: Colors.white, fontSize: 18.0),
                       ),
@@ -75,4 +82,6 @@ class RowCardWidget extends StatelessWidget {
       ),
     );
   }
+
+  launchUrl(Uri parse) {}
 }

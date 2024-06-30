@@ -1,9 +1,25 @@
 // ignore_for_file: file_names, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  AppBarWidget({super.key});
+
+  // Define URLs
+  final List<String> urls = [
+    "https://www.linkedin.com/in/anshu-varma-32b99b1ba/",
+    "https://github.com/anshuvarma",
+    "https://www.instagram.com/anshu.n.varma?r=nametag",
+    "https://docs.google.com/document/d/1VHvTTR3EP-Pry0UCPH3D4wypgyavK1gk/edit?usp=sharing&ouid=106733988499391269666&rtpof=true&sd=true"
+  ];
+
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +29,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       "Skills",
       "Experience",
       "Projects",
-      "Education"
+      "Education",
     ];
+
     final List<String> routes = [
       '/',
       '/skills',
       '/experience',
       '/projects',
-      '/education'
+      '/education',
     ];
 
     return AppBar(
@@ -59,33 +76,41 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 IconButton(
                   icon: Image.asset(
                     'assets/images/linkedin.png',
+                    height: 24.0, // Adjust icon size
+                    width: 24.0,
                   ),
                   onPressed: () {
-                    // Handle LinkedIn click
+                    _launchURL(urls[0]);
                   },
                 ),
                 IconButton(
                   icon: Image.asset(
                     'assets/images/github.png',
+                    height: 24.0,
+                    width: 24.0,
                   ),
                   onPressed: () {
-                    // Handle GitHub click
+                    _launchURL(urls[1]);
                   },
                 ),
                 IconButton(
                   icon: Image.asset(
                     'assets/images/instagram.png',
+                    height: 24.0,
+                    width: 24.0,
                   ),
                   onPressed: () {
-                    // Handle Instagram click
+                    _launchURL(urls[2]);
                   },
                 ),
                 IconButton(
                   icon: Image.asset(
                     'assets/images/resume.png',
+                    height: 24.0,
+                    width: 24.0,
                   ),
                   onPressed: () {
-                    // Handle Resume click
+                    _launchURL(urls[3]);
                   },
                 ),
               ],

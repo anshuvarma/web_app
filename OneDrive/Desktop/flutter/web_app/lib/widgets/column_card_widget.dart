@@ -12,46 +12,68 @@ class ColumnCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(100, 20, 100, 20),
-      shrinkWrap: true,
-      itemCount: 3,
-      separatorBuilder: (context, index) => const SizedBox(height: 16.0),
-      itemBuilder: (context, index) {
-        return Card(
-          shadowColor: Colors.cyan.shade50,
-          elevation: 5.0,
-          shape: const RoundedRectangleBorder(
-            side: BorderSide(
-              color: Colors.white,
-              width: 0.5,
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 100),
+      child: SizedBox(
+        height: 500.0,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(), // Prevents scrolling
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisExtent: 300.0, // Adjusted height
+            childAspectRatio: 1.0,
+            // mainAxisSpacing: 1000.0,
+            crossAxisSpacing: 20.0, //width space between the cards
           ),
-          child: Container(
-            color: Colors.black87,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    cardTitles[index],
-                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: cardDesc[index],
-                  ),
-                ],
+          itemCount: cardTitles.length,
+          itemBuilder: (context, index) {
+            return Card(
+              shadowColor: Colors.cyan.shade50,
+              elevation: 5.0,
+              shape: const RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.white,
+                  width: 0.5,
+                ),
+                // borderRadius: BorderRadius.all(Radius.circular(10.0)), // Rounded corners
               ),
-            ),
-          ),
-        );
-      },
+              child: Container(
+                color: Colors.black87,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        cardTitles[index],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ), // Bold title
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: cardDesc[index]
+                            .map((desc) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 3.0), // Reduced padding
+                                  child: desc,
+                                ))
+                            .toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

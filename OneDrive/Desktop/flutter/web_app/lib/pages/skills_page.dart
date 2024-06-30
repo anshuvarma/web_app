@@ -15,6 +15,7 @@ class SkillsPage extends StatelessWidget {
       "Databases",
       "Analytics"
     ];
+
     List<List<Widget>> cardDesc = [
       // Programming Languages
       [
@@ -65,7 +66,7 @@ class SkillsPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: const AppBarWidget(),
+      appBar: AppBarWidget(),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -97,8 +98,7 @@ class SkillsPage extends StatelessWidget {
               RowCardWidget(
                 cardTitles: cardTitles,
                 cardDesc: cardDesc,
-                // mainAxisExtent: 400.0, // Max height of each card
-                maxCrossAxisExtent: 400.0, // Max width of each card
+                maxCrossAxisExtent: 400.0,
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
                 childAspectRatio: 1.0,

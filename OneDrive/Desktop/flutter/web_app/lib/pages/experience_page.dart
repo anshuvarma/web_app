@@ -9,32 +9,41 @@ class ExperiencePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> experienceCardTitles = [
-      "NodeJS Developer",
-      "Flutter Developer",
+      "Software Developer",
       "Graduate Engineer Trainee",
+      "Internship",
     ];
     List<List<Widget>> experienceCardDesc = [
-      // NODEJS
-      [
-        const Text("JIO FACE"),
-        // Add more skillscard as needed
-      ],
-
       // FLUTTER
       [
-        const Text("PEOPLE FIRST"),
+        const Text(
+          "PEOPLE FIRST",
+          style: TextStyle(color: Colors.white),
+        ),
         // Add more skillscard as needed
       ],
 
       // POWER BI
       [
-        const Text("JIO FACE DASHBOARD"),
+        const Text(
+          "JIO FACE DASHBOARD",
+          style: TextStyle(color: Colors.white),
+        ),
+        // Add more skillscard as needed
+      ],
+
+      // INTERNSHIP
+      [
+        const Text(
+          "THE SPARKS FOUNDATION",
+          style: TextStyle(color: Colors.white),
+        ),
         // Add more skillscard as needed
       ],
     ];
 
     return Scaffold(
-      appBar: const AppBarWidget(),
+      appBar: AppBarWidget(),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -66,12 +75,6 @@ class ExperiencePage extends StatelessWidget {
               ColumnCardWidget(
                 cardTitles: experienceCardTitles,
                 cardDesc: experienceCardDesc,
-                // maxCrossAxisExtent: 700.0, // Dynamic width
-                // mainAxisExtent: 250.0, // Dynamic height
-                // mainAxisSpacing: 20.0,
-                // crossAxisSpacing: 20.0,
-                // // childAspectRatio: 2.0, // Dynamic aspect ratio
-                // scrollDirection: Axis.vertical,
               ),
             ],
           ),

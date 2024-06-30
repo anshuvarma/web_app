@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:web_app/widgets/appBar_widget.dart';
 import 'package:web_app/widgets/row_card_widget.dart';
@@ -18,24 +16,24 @@ class ProjectsPage extends StatelessWidget {
     ];
 
     List<String> cardDescriptions = [
-      "Conceptualized, designed and developed a dynamic portfolio website using HTML, CSS, JavaScript and ReactJS",
+      "A Flutter portfolio website includes: Home (background and overview), Projects (showcased works), Skills (languages and tools), Education (qualifications), and Experience (work history)",
       "A Python program that detects and counts the number of fingers displayed to the Webcam and outputs the corresponding result using various libraries like opencv, Mediapipe etc.",
-      "Implemented a program that generates and ID card along with a unique QR	Code using Python and its libraries",
-      "A Basic C Program that depicts Banker's Algorithm.",
+      "Python script creates customizable ID cards with college names, unique IDs, personal details, and QR codes for data retrieval. It combines image handling and user input for easy ID card creation and management.",
+      "This C program implements the Banker's Algorithm to ensure safe resource allocation, preventing deadlock by verifying if requests can be met without surpassing available resources.",
     ];
 
     List<List<String>> tags = [
       ["Flutter", "Dart"],
       ["Python", "OpenCV", "Mediapipe"],
-      ["Python"],
+      ["Python", "QR Code"],
       ["C", "C++"]
     ];
 
     List<String> githubUrls = [
-      "https://github.com/user/portfolio",
-      "https://github.com/user/finger-detection-counter",
-      "https://github.com/user/id-qr-code-generator",
-      "https://github.com/user/pizza-menu-bankers-algo"
+      "https://github.com/anshuvarma/Portfolio",
+      "https://github.com/anshuvarma/FInger-Counter",
+      "https://github.com/anshuvarma/ID-QRCode-Generator",
+      "https://github.com/anshuvarma/OS-mini-project"
     ];
 
     List<List<Widget>> cardDescWidgets =
@@ -44,14 +42,14 @@ class ProjectsPage extends StatelessWidget {
         SkillsCardColumn(
           label: cardTitles[index],
           description: cardDescriptions[index],
-          tags: tags[index], // Pass the List<String> directly
-          githubUrl: githubUrls[index], // Pass the GitHub URL
+          tags: tags[index],
+          githubUrl: githubUrls[index],
         )
       ];
     });
 
     return Scaffold(
-      appBar: const AppBarWidget(),
+      appBar: AppBarWidget(),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -81,7 +79,6 @@ class ProjectsPage extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               RowCardWidget(
-                // cardTitles: cardTitles, // This is now optional
                 cardDesc: cardDescWidgets,
                 maxCrossAxisExtent: 400.0,
                 mainAxisSpacing: 16.0,
